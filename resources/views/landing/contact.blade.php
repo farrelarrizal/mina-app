@@ -1,19 +1,19 @@
 @extends('layouts.landing')
 @section('content')
 <!-- Slider Area Start-->
-    <div class="services-area">
-        <div class="container">
-            <!-- Section-tittle -->
-            <div class="row d-flex justify-content-center">
-                <div class="col-lg-8">
-                    <div class="section-tittle text-center mb-80">
-                        <span>Kontak</span>
-                        <h2>Kontak Mina Wisata</h2>
-                    </div>
+<div class="services-area">
+    <div class="container">
+        <!-- Section-tittle -->
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-8">
+                <div class="section-tittle text-center mb-80">
+                    <span>Kontak</span>
+                    <h2>Kontak Mina Wisata</h2>
                 </div>
             </div>
         </div>
     </div>
+</div>
     <!-- Slider Area End-->
 <section class="contact-section">
     <div class="container">

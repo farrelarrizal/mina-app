@@ -1,8 +1,18 @@
 @extends('layouts.landing')
 @section('content')
+<!-- Section-tittle -->
+
     <!-- Mengapa Memilih Mina Wisata Start -->
     <div class="we-create-area create-padding">
         <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-tittle text-center">
+                        <span>Kontak</span>
+                        <h2>Kontak Mina Wisata</h2>
+                    </div>
+                </div>
+            </div>
             <div class="row d-flex align-items-end">
                 <div class="col-lg-6 col-md-12">
                     <div class="we-create-img">

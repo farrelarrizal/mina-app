@@ -42,12 +42,4 @@ class ArtikelController extends Controller
         // dd($data);
         return view('articles.post', ['data' => $data]);
     }
-
-    public function admin()
-    {
-        $data = [
-            'title' => 'List Artikel',
-        ];
-        return view('dashboard.artikel.index', $data);
-    }
 }

@@ -15,4 +15,6 @@ class PaketController extends Controller
 
         return view('dashboard.paket.index', $data);
     }
+
+    
 }

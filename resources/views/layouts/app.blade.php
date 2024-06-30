@@ -31,6 +31,10 @@
     <!-- [Page Specific JS] start-->
 <!-- Apex Chart -->
 <script src="<?= asset('assets/js/plugins/apexcharts.min.js') ?>"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="<?= asset('assets/js/plugins/jquery.dataTables.min.js') ?>"></script>
+<script src="<?= asset('assets/js/plugins/dataTables.bootstrap5.min.js') ?>"></script>
+
 <!-- [Page Specific JS] end -->
 {{-- @include('partials/customizer') --}}
 @yield('script')

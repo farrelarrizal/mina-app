@@ -28,7 +28,7 @@
                             <p><i class="fas fa-calendar-alt"></i> {{ $package->duration }} Hari</p>
                         </div>
                         <div class="do-btn">
-                            <a href="{{ route('package.show', $package->id) }}"><i class="ti-arrow-right"></i> Selengkapnya</a>
+                            <a href="{{ route('package.show', $package->slug) }}"><i class="ti-arrow-right"></i> Selengkapnya</a>
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                         <p><i class="fas fa-calendar-alt"></i> {{ $package->duration }} Hari</p>
                     </div>
                     <div class="do-btn">
-                        <a href="{{ route('package.show', $package->id) }}"><i class="ti-arrow-right"></i> Selengkapnya</a>
+                        <a href="{{ route('package.show', $package->slug) }}"><i class="ti-arrow-right"></i> Selengkapnya</a>
                     </div>
                 </div>
             </div>
@@ -107,7 +107,7 @@
                         <p><i class="fas fa-calendar-alt"></i> {{ $package->duration }} Hari</p>
                     </div>
                     <div class="do-btn">
-                        <a href="{{ route('package.show', $package->id) }}"><i class="ti-arrow-right"></i> Selengkapnya</a>
+                        <a href="{{ route('package.show', $package->slug) }}"><i class="ti-arrow-right"></i> Selengkapnya</a>
                     </div>
                 </div>
             </div>
@@ -146,7 +146,7 @@
                         <p><i class="fas fa-calendar-alt"></i> {{ $package->duration }} Hari</p>
                     </div>
                     <div class="do-btn">
-                        <a href="{{ route('package.show', $package->id) }}"><i class="ti-arrow-right"></i> Selengkapnya</a>
+                        <a href="{{ route('package.show', $package->slug) }}"><i class="ti-arrow-right"></i> Selengkapnya</a>
                     </div>
                 </div>
             </div>
