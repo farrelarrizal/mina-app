@@ -26,9 +26,8 @@ class PackageController extends Controller
 
     public function show($url)
     {
-        // dd($url);
         $package = DB::table('packages')
-            ->join('package_detail', 'packages.slug', '=', 'package_detail.slug')
+            ->join('package_detail', 'packages.id', '=', 'package_detail.package_id')
             ->join('package_category', 'packages.category_id', '=', 'package_category.id')
             ->where('packages.slug', $url)->first();
 
@@ -36,11 +35,10 @@ class PackageController extends Controller
         $package_category = DB::table('package_category')->where('is_active', 1)->orderBy('created_at', 'desc')->get();
 
         $data = [
-            'title' => $package->package_name,
+            'title' => 'Detail Paket',
             'package' => $package,
             'package_category' => $package_category,
             'popular_packages' => $popular_packages,
-            // 'categoryPackage' => $categoryPackage,
         ];
         return view('landing.package-detail', $data);
     }

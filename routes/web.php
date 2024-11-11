@@ -107,8 +107,8 @@ Route::middleware('auth')->group(function () {
             Route::get('create', [DashboardController::class, 'bannerCreate'])->name('create');
             Route::post('store', [DashboardController::class, 'bannerStore'])->name('store');
             Route::get('edit/{id}', [DashboardController::class, 'bannerEdit'])->name('edit');
-            Route::post('update/{id}', [DashboardController::class, 'bannerUpdate'])->name('update');
-            Route::get('delete/{id}', [DashboardController::class, 'bannerDelete'])->name('delete');
+            Route::put('update/{id}', [DashboardController::class, 'bannerUpdate'])->name('status');
+            Route::delete('delete/{id}', [DashboardController::class, 'bannerDelete'])->name('delete');
         });
     });
 });

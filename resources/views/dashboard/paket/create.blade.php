@@ -113,17 +113,17 @@
                             <textarea name="perlengkapan" id="classic-editor" placeholder="Masukkan Perlengkapan yang didapatkan jamaah" ></textarea>
                         </div>
                         <div class="mt-2">
-                            <label class="form-label " for="classic-editor">Dokumen Persyaratan<span class="text-danger">*</span>
+                            <label class="form-label " for="classic-editor-2">Dokumen Persyaratan<span class="text-danger">*</span>
                             </label>
                             <textarea name="dokumen_persyaratan" id="classic-editor2" placeholder="Masukkan dokumen persyaratan yang diperlukan jamaah" ></textarea>
                         </div>
                         <div class="mt-2">
-                            <label class="form-label" for="classic-editor">fasilitas<span class="text-danger">*</span>
+                            <label class="form-label" for="classic-editor4">fasilitas<span class="text-danger">*</span>
                             </label>
                             <textarea name="fasilitas" id="classic-editor4" placeholder="Masukkan fasilitas yang akan didapatkan jamaah" ></textarea>
                         </div>
                         <div class="mt-2">
-                            <label class="form-label" for="classic-editor">Syarat dan Ketentuan<span class="text-danger">*</span>
+                            <label class="form-label" for="classic-editor3">Syarat dan Ketentuan<span class="text-danger">*</span>
                             </label>
                             <textarea name="snk" id="classic-editor3" placeholder="Masukkan syarat dan ketentuan yang perlu diperhatikan oleh jamaah" ></textarea>
                         </div>
@@ -162,37 +162,32 @@
 <script src="<?= asset('assets/js/plugins/dropzone-amd-module.min.js') ?>"></script>
 <script>
     (function () {
-    ClassicEditor.create(document.querySelector('#classic-editor')).catch((error) => {
-        console.error(error);
-    });
+        // Initialize ClassicEditor for each textarea with a unique ID
+        const editorIds = ['#classic-editor', '#classic-editor2', '#classic-editor3', '#classic-editor4'];
+        editorIds.forEach((id) => {
+            const element = document.querySelector(id);
+            if (element) {
+                ClassicEditor.create(element).catch((error) => {
+                    console.error(error);
+                });
+            }
+        });
     })();
 
-    // 3 classic-editor
-    ClassicEditor.create(document.querySelector('#classic-editor2')).catch((error) => {
-        console.error(error);
-    });
-    // 3 classic-editor
-    ClassicEditor.create(document.querySelector('#classic-editor3')).catch((error) => {
-        console.error(error);
-    });
-    // 3 classic-editor
-    ClassicEditor.create(document.querySelector('#classic-editor4')).catch((error) => {
-        console.error(error);
-    });
-    
+    // Initialize Choices for #tipe_paket if it exists
+    const tipePaketElement = document.querySelector('#tipe_paket');
+    if (tipePaketElement) {
+        new Choices(tipePaketElement, {
+            searchEnabled: true,
+            itemSelectText: '',
+        });
+    }
 
-    // #tipe_paket
-    const choices = new Choices('#tipe_paket', {
-        searchEnabled: true,
-        itemSelectText: '',
+    // Format price input on keyup
+    $('.price').on('keyup', function () {
+        this.value = this.value.replace(/\D/g, '').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
     });
 
-    // price format
-    $('.price').on('keyup', function() {
-        var val = this.value.replace(/\D/g, '');
-        var val = val.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
-        this.value = val;
-    });
 </script>
 
 @endsection

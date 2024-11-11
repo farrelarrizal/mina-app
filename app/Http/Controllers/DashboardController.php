@@ -205,11 +205,10 @@ class DashboardController extends Controller
 
     public function paketStore(Request $request)
     {
-        // dd($request->all());
         $slug = preg_replace('/[^a-zA-Z0-9]/', '-', $request->title);
         $slug = strtolower($slug);
         // dd($slug);
-
+        
         // remove . from price and convert to int
         $harga_quad =  (int) str_replace('.', '', $request->harga_quad);
         $harga_triple =  (int) str_replace('.', '', $request->harga_triple);
@@ -235,16 +234,16 @@ class DashboardController extends Controller
 
         // keep the html tag
         $perlengkapan = $request->perlengkapan;
-        $perlengkapan = strip_tags($perlengkapan);
+        // $perlengkapan = strip_tags($perlengkapan);
 
         $dokumen_persyaratan = $request->dokumen_persyaratan;
-        $dokumen_persyaratan = strip_tags($dokumen_persyaratan);
+        // $dokumen_persyaratan = strip_tags($dokumen_persyaratan);
 
         $snk = $request->snk;
-        $snk = strip_tags($snk);
+        // $snk = strip_tags($snk);
 
         $fasilitas = $request->fasilitas;
-        $fasilitas = strip_tags($fasilitas);
+        // $fasilitas = strip_tags($fasilitas);
 
 
         try {
@@ -417,4 +416,48 @@ class DashboardController extends Controller
 
         return redirect()->route('dashboard.paket.index')->with('success', 'Paket berhasil diperbarui');
     }
+
+    public function bannerUpdate(Request $request) {
+        $banner = DB::table('banner')->where('id', $request->id)->first();
+    
+        if ($banner) {
+            // Toggle status
+            $status = $banner->is_active == 1 ? 0 : 1;
+    
+            DB::table('banner')->where('id', $request->id)->update([
+                'is_active' => $status
+            ]);
+    
+            // Return JSON response
+            return response()->json([
+                'status' => 200,
+                'message' => 'Status banner berhasil diubah.'
+            ]);
+        }
+    
+        return response()->json([
+            'status' => 500,
+            'message' => 'Banner tidak ditemukan.'
+        ], 500);
+    }
+
+    public function bannerDelete(Request $request){
+        $banner = DB::table('banner')->where('id', $request->id)->first();
+    
+        if ($banner) {
+            DB::table('banner')->where('id', $request->id)->delete();
+    
+            return response()->json([
+                'status' => 200,
+                'message' => 'Banner berhasil dihapus.'
+            ]);
+        }
+    
+        return response()->json([
+            'status' => 500,
+            'message' => 'Banner tidak ditemukan.'
+        ], 500);
+    }
+    
+    
 }

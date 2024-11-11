@@ -49,7 +49,7 @@
                         <!-- Logo -->
                         <div class="col-xl-2 col-lg-2 col-md-1">
                             <div class="logo">
-                                <a href="index.html"><img src="{{ asset('assets/landing/img/logo/logo mina ver2.png')}}" alt=""></a>
+                                <a href="{{route('landing.index')}}"><img src="{{ asset('assets/landing/img/logo/logo mina ver2.png')}}" alt=""></a>
                             </div>
                         </div>
                         <div class="col-xl-8 col-lg-8 col-md-8">
@@ -109,7 +109,7 @@
                                 <div class="single-footer-caption mb-30">
                                     <!-- logo -->
                                     <div class="footer-logo">
-                                        <a href="index.html"><img src="{{ asset('assets/landing/img/logo/logo mina ver2.png')}}" alt=""></a>
+                                        <a href="{{route('landing.index')}}"><img src="{{ asset('assets/landing/img/logo/logo mina ver2.png')}}" alt=""></a>
                                     </div>
                                     <div class="footer-tittle">
                                         <div class="footer-pera">
@@ -163,11 +163,11 @@
                                 <div class="footer-tittle">
                                     <h4>Halaman</h4>
                                     <ul>
-                                        <li><a href="#">Beranda</a></li>
-                                        <li><a href="#">Tentang Kami</a></li>
-                                        <li><a href="#">Paket</a></li>
-                                        <li><a href="#">Kontak</a></li>
-                                        <li><a href="#">Blog</a></li>
+                                        <li><a href="{{route('landing.index')}}">Beranda</a></li>
+                                        <li><a href="{{route('landing.about')}}">Tentang Kami</a></li>
+                                        <li><a href="{{route('package.index')}}">Paket</a></li>
+                                        <li><a href="{{route('landing.contact')}}">Kontak</a></li>
+                                        <li><a href="{{route('articles.index')}}">Artikel</a></li>
                                     </ul>
                                 </div>
                             </div>

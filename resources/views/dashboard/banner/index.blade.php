@@ -55,15 +55,13 @@
                     <td>
                         <div class="mb-2">
                             @if ($banner->is_active)
-                                <button type="button" class="btn btn-light-success btn-sm w-100 status">
-                                    <!-- status icon -->
+                                <button type="button" class="btn btn-light-success btn-sm w-100 status" data-id="{{ $banner->id }}">
                                     <span class="icon-border_color">
                                         <i class="fa fa-check" aria-hidden="true"></i> Aktif
                                     </span>
                                 </button>
                             @else
-                                <button type="button" class="btn btn-light-danger btn-sm w-100 status">
-                                    <!-- status icon -->
+                                <button type="button" class="btn btn-light-danger btn-sm w-100 status" data-id="{{ $banner->id }}">
                                     <span class="icon-border_color">
                                         <i class="fa fa-times" aria-hidden="true"></i> Tidak Aktif
                                     </span>
@@ -71,7 +69,7 @@
                             @endif
                         </div>
                         <div>
-                            <button type="button" class="btn btn-danger btn-sm w-100 delete">
+                            <button type="button" class="btn btn-danger btn-sm w-100 delete" data-id="{{ $banner->id }}">
                                 <span class="icon-border_color">
                                     <i class="fa fa-trash" aria-hidden="true"></i> Hapus
                                 </span>
@@ -107,8 +105,8 @@
 <script>
     $('.delete').on('click', function (e) {
         e.preventDefault();
-        const href = $(this).attr('href');
-        console.log(href);
+        const bannerId = $(this).data('id'); // Retrieve banner ID from data-id attribute
+        
         Swal.fire({
             title: 'Apakah Anda Yakin?',
             text: 'Data yang dihapus tidak bisa dikembalikan!',
@@ -118,14 +116,46 @@
             cancelButtonColor: '#d33',
             confirmButtonText: 'Ya, Hapus!'
         }).then((result) => {
-            // redirect to href
             if (result.isConfirmed) {
-                document.location.href = href;
+                // Send an AJAX request to delete the banner
+                $.ajax({
+                    type: "DELETE",
+                    url: "/dashboard/banner/delete/" + bannerId, // Include the ID in the URL
+                    data: {
+                        _token: "{{ csrf_token() }}"
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        if (response.status === 200) {
+                            Swal.fire(
+                                'Berhasil!',
+                                'Banner berhasil dihapus.',
+                                'success'
+                            ).then(() => {
+                                location.reload();
+                            });
+                        } else {
+                            Swal.fire(
+                                'Gagal!',
+                                'Terjadi kesalahan dalam menghapus banner.',
+                                'error'
+                            );
+                        }
+                    },
+                    error: function () {
+                        console.log('Error');
+                        Swal.fire(
+                            'Gagal!',
+                            'Terjadi kesalahan saat menghubungi server.',
+                            'error'
+                        );
+                    }
+                });
             }
+        });
+    });
 
 
-        })
-    })
 
     // sweet alert confirmations if button swith clicked
     $('.form-check-input').on('click', function (e) {
@@ -147,7 +177,61 @@
             }
         })
     })
-        
 
+    // sweet alert confirmations if button status clicked
+    $('.status').on('click', function (e) {
+        e.preventDefault();
+        const bannerId = $(this).data('id');
+        
+        Swal.fire({
+            title: 'Apakah Anda Yakin?',
+            text: 'Data yang diubah mempengaruhi tampilan website!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Ubah!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Update URL to include bannerId using string concatenation
+                    $.ajax({
+                        type: "PUT",
+                        url: "/dashboard/banner/update/" + bannerId, // Include the ID in the URL
+                        data: {
+                            _token: "{{ csrf_token() }}"
+                        },
+                        success: function (response) {
+                            console.log(response);
+                            if (response.status === 200) {
+                                Swal.fire(
+                                    'Berhasil!',
+                                    'Status banner berhasil diubah.',
+                                    'success'
+                                ).then(() => {
+                                    location.reload();
+                                });
+                            } else {
+                                Swal.fire(
+                                    'Gagal!',
+                                    'Terjadi kesalahan dalam mengubah status banner.',
+                                    'error'
+                                );
+                            }
+                        },
+                        error: function () {
+                            console.log('Error');
+                            Swal.fire(
+                                'Gagal!',
+                                'Terjadi kesalahan saat menghubungi server.',
+                                'error'
+                            );
+                        }
+                    });
+                }
+            })
+        });
+
+
+            
 </script>
 @endsection
