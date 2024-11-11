@@ -1,9 +1,9 @@
 @extends('layouts.landing')
 @section('content')
     <!-- Slider Area Start-->
-    <div class="single-slider slider-height d-flex align-items-center we-padding" data-background="assets/landing/img/hero/lp1.png">
-        <div class="container-fluid">
-            <div class="container">
+    <div class="single-slider slider-height d-flex align-items-center" data-background="assets/landing/img/hero/lp1.png">
+        <div class="container-fluid mt-2 mt-md-3 mt-lg-5">
+            <div class="container px-3 px-md-5">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -12,18 +12,11 @@
                         <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
                     </ol>
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img class="d-block w-100" src="assets/landing/img/hero/CEO2.png" alt="First slide">
+                        @foreach($banners as $banner)
+                        <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                            <img class="d-block w-100 img-fluid" src="{{ asset($banner->image_path) }}" alt="{{ $banner->title }}" style="height: 100%; object-fit: cover;">
                         </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="assets/landing/img/hero/Perlengkapan2.png" alt="Second slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="assets/landing/img/hero/TL.png" alt="Third slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="assets/landing/img/hero/bimbingan.png" alt="Third slide">
-                        </div>
+                        @endforeach
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -35,20 +28,14 @@
                     </a>
                 </div>
             </div>
-            <div class="col-lg-5">
-                <div class="hero__img d-none d-lg-block" data-animation="fadeInRight" data-delay="1s">
-                    <img src="" alt="">
-                </div>
-            </div>
         </div>
     </div>
-    </div>
-    </div>
-    </div>
+        
+    
     <!-- Slider Area End-->
 
     <!-- Paket Umrah start-->
-    <div class="what-we-do we-padding">
+    <div class="">
         <div class="container">
             <!-- Section-tittle -->
             <div class="row d-flex justify-content-center">

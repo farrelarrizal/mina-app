@@ -17,7 +17,14 @@ use App\Http\Controllers\LandingController;
 Route::get('/', [LandingController::class, 'index'])->name('landing.index');
 
 Route::get('about', function () {
-    return view('landing.about');
+    $package_category = DB::table('package_category')->where('is_active', 1)->orderBy('created_at', 'desc')->get();
+
+    $data = [
+        'title' => 'About Us',
+        'package_category' => $package_category,
+    ];
+
+    return view('landing.about', $data);
 })->name('landing.about');
 
 // Route::get('package', function () {
@@ -93,5 +100,15 @@ Route::middleware('auth')->group(function () {
         });
         // Route::get('paket', [DashboardController::class, 'paket'])->name('paket');
         Route::get('tipe', [DashboardController::class, 'tipe'])->name('tipe');
+
+        // beranda 
+        Route::prefix('banner')->name('banner.')->group(function () {
+            Route::get('/', [DashboardController::class, 'banner'])->name('index');
+            Route::get('create', [DashboardController::class, 'bannerCreate'])->name('create');
+            Route::post('store', [DashboardController::class, 'bannerStore'])->name('store');
+            Route::get('edit/{id}', [DashboardController::class, 'bannerEdit'])->name('edit');
+            Route::post('update/{id}', [DashboardController::class, 'bannerUpdate'])->name('update');
+            Route::get('delete/{id}', [DashboardController::class, 'bannerDelete'])->name('delete');
+        });
     });
 });

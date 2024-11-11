@@ -61,10 +61,13 @@
                                         <li><a href="{{ route('landing.about')}}">Tentang Kami</a></li>
                                         <li><a href="{{ route('package.index') }}">Paket</a>
                                             <ul class="submenu">
-                                                <li><a href="{{ route('package.index') }}">Umrah Reguler</a></li>
+                                                {{-- <li><a href="{{ route('package.index') }}">Umrah Reguler</a></li>
                                                 <li><a href="{{ route('package.index') }}">Haji Plus</a></li>
                                                 <li><a href="{{ route('package.index') }}">Umrah Hemat</a></li>
-                                                <li><a href="{{ route('package.index') }}">Umrah & Tour</a></li>
+                                                <li><a href="{{ route('package.index') }}">Umrah & Tour</a></li> --}}
+                                                @foreach ($package_category as $category)
+                                                    <li><a href="{{ route('package.index') }}">{{ $category->category_name }}</a></li>
+                                                @endforeach
                                             </ul>
                                         </li>
                                         <li><a href="{{ route('landing.contact') }}">Kontak</a></li>

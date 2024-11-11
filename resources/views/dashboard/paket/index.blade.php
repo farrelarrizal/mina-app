@@ -22,12 +22,12 @@
             <div class="row">
                 <div class="col-6">
                     <!-- center height -->
-                    <h5>LIST ARTIKEL</h5>
+                    <h5>Daftar Paket Mina Wisata</h5>
                 </div>
                 <div class="col-6">
                     <a href="{{ route('dashboard.paket.create') }}" class="btn btn-primary btn-sm float-end">
                         <span class="icon-border_color">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add Artikel
+                            <i class="fa fa-plus" aria-hidden="true"></i> Tambah Paket
                         </span>
                     </a>
                 </div>
@@ -63,16 +63,16 @@
                     <td>{{ $package->category_name }}</td>
                     <td>{{ $package->duration }}</td>
                     <td>
-                        <a href="{{ route('dashboard.paket.edit', $package->id) }}" class="btn btn-warning btn-sm">
+                        <a href="{{ route('dashboard.paket.edit', $package->package_id) }}" class="btn btn-warning btn-sm">
                             <span class="icon-border_color">
                                 <i class="fa fa-edit" aria-hidden="true"></i> Edit
                             </span>
-                        </a>
-                        <a href="{{ route('dashboard.paket.delete', $package->id) }}" class="btn btn-danger btn-sm delete">
+                        </a>                        
+                        <a href="{{ route('dashboard.paket.delete', $package->package_id) }}" class="btn btn-danger btn-sm delete">
                             <span class="icon-border_color">
                                 <i class="fa fa-trash" aria-hidden="true"></i> Delete
                             </span>
-                        </a>
+                        </a>                        
                     </td>
                 </tr>
                 @endforeach

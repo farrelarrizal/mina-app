@@ -21,7 +21,6 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-6">
-                    <!-- center height -->
                     <h5>LIST ARTIKEL</h5>
                 </div>
                 <div class="col-6">
@@ -34,52 +33,56 @@
             </div>
         </div>
         <div class="card-body">
-        <div class="table-responsive dt-responsive">
-            <table id="dom-jqry" class="table table-striped table-bordered nowrap">
-            <thead>
-                <tr>
-                <th>ID</th>
-                <th>Image</th>
-                <th>Judul Artikel</th>
-                <th>Author</th>
-                <th>Created At</th>
-                <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($articles as $article)
-                <tr>
-                    <td>{{ $article->id }}</td>
-                    <td>
-                        <img src="{{ asset($article->image) }}" alt="{{ $article->title }}" width="100">
-                    </td>
-                    <td>
-                        {{ $article->title }}
-                        <br>
-                        <small>
-                            <a href="{{ url('article/'.$article->url) }}">{{ url('article/'.$article->url) }}</a>
-                        </small>
-                    </td>
-                    <td>{{ $article->author }}</td>
-                    <td>{{ $article->created_at }}</td>
-                    <td>
-                        <a href="{{ route('dashboard.artikel.edit', $article->id) }}" class="btn btn-warning btn-sm">
-                            <span class="icon-border_color">
-                                <!-- icon edit with fontawesome -->
-                                <i class="fa fa-edit" aria-hidden="true"></i> Edit
-                        </a>
-                        <button class="btn btn-danger btn-sm delete" href="{{ route('dashboard.artikel.delete', $article->id) }}">
-                            <span class="icon-border_color">
-                                <!-- icon delete with fontawesome -->
-                                <i class="fa fa-trash" aria-hidden="true"></i> Delete
-                            </span>
-                        </button>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-            </table>
-        </div>
+            <div class="table-responsive dt-responsive">
+                <table id="dom-jqry" class="table table-striped table-bordered nowrap">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Image</th>
+                            <th>Judul Artikel</th>
+                            <th>Author</th>
+                            <th>Created At</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($articles as $article)
+                            <tr>
+                                <td>{{ $article->id }}</td>
+                                <td>
+                                    <img src="{{ asset($article->image) }}" alt="{{ $article->title }}" width="100">
+                                </td>
+                                <td>
+                                    {{ $article->title }}
+                                    <br>
+                                    <small>
+                                        <a href="{{ url('article/'.$article->url) }}">{{ url('article/'.$article->url) }}</a>
+                                    </small>
+                                </td>
+                                <td>{{ $article->author }}</td>
+                                <td>{{ $article->created_at }}</td>
+                                <td>
+                                    <a href="{{ route('dashboard.artikel.edit', $article->id) }}" class="btn btn-warning btn-sm">
+                                        <span class="icon-border_color">
+                                            <i class="fa fa-edit" aria-hidden="true"></i> Edit
+                                        </span>
+                                    </a>
+                                    <button class="btn btn-danger btn-sm delete" href="{{ route('dashboard.artikel.delete', $article->id) }}">
+                                        <span class="icon-border_color">
+                                            <i class="fa fa-trash" aria-hidden="true"></i> Delete
+                                        </span>
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination Links -->
+            <div class="mt-4 d-flex justify-content-center">
+                {{ $articles->links() }}
+            </div>
         </div>
     </div>
 </div>
@@ -87,12 +90,14 @@
 
 @section('script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="<?= asset('assets/js/plugins/jquery.dataTables.min.js') ?>"></script>
-<script src="<?= asset('assets/js/plugins/dataTables.bootstrap5.min.js') ?>"></script>
+<script src="{{ asset('assets/js/plugins/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/dataTables.bootstrap5.min.js') }}"></script>
 <!-- Datatable -->
 <script>
   $(document).ready(function() {
-    $('#dom-jqry').DataTable();
+      $('#dom-jqry').DataTable({
+          paging: false // Disable DataTable's built-in pagination
+      });
   });
 </script>
 
@@ -102,7 +107,6 @@
     $('.delete').on('click', function (e) {
         e.preventDefault();
         const href = $(this).attr('href');
-        console.log(href);
         Swal.fire({
             title: 'Apakah Anda Yakin?',
             text: 'Data yang dihapus tidak bisa dikembalikan!',
@@ -112,13 +116,10 @@
             cancelButtonColor: '#d33',
             confirmButtonText: 'Ya, Hapus!'
         }).then((result) => {
-            // redirect to href
             if (result.isConfirmed) {
                 document.location.href = href;
             }
-
-
-        })
-    })
+        });
+    });
 </script>
 @endsection

@@ -51,7 +51,7 @@
                                 id="tipe_paket">
                                 <option value="">Pilih Tipe Paket</option>
                                 @foreach($tipe_paket as $tipe)
-                                <option value="{{ $tipe->id }}">{{ $tipe->category_name }}</option>
+                                    <option value="{{ $tipe->id }}">{{ $tipe->category_name }}</option>
                                 @endforeach
                             </select>
                         </div>

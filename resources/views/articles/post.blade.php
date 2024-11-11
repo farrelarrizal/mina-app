@@ -1,3 +1,4 @@
+
 @extends('layouts.landing')
 @section('content')
     <!--================Blog Area =================-->
@@ -7,18 +8,18 @@
           <div class="col-lg-8 posts-list">
              <div class="single-post">
                 <div class="feature-img">
-                   <img class="img-fluid" src="{{ asset($data['article']->image) }}" alt="Gambar Artikel">
+                   <img class="img-fluid" src="{{ asset($article->image) }}" alt="">
                 </div>
                 <div class="blog_details">
-                   <h1>{{ $data['article']->title }}</h1>
+                   <h1>{{ $article->title }}</h1>
                      <ul class="blog-info-link mt-3 mb-4">
-                        <li><a href="#"><i class="far fa-user"></i> {{ $data['article']->author }}</a></li>
+                        <li><a href="#"><i class="far fa-user"></i> {{ $article->author }}</a></li>
                         <!-- date posted will be formatted to human readable format -->
-                        <li><a href="#"><i class="far fa-calendar"></i> Surabaya, {{ date('d F Y', strtotime($data['article']->created_at)) }}</a></li>
+                        <li><a href="#"><i class="far fa-calendar"></i> Surabaya, {{ date('d F Y', strtotime($article->created_at)) }}</a></li>
                      </ul>
                    <!-- content of the article decoded from html entities -->
                      <p class="excert">
-                        {!! html_entity_decode($data['article']->content) !!}
+                        {!! html_entity_decode($article->content) !!}
                      </p>
              </div>
              <div class="card text-center">
@@ -53,7 +54,7 @@
                   <h4>Kategori Paket</h4>
                   <hr>
                   <ul class="list cat-list">
-                     @foreach ($data['categoryPackage'] as $category)
+                     @foreach ($package_category as $category)
                         <li>
                            <a href="#" class="d-flex">
                               <p>{{ $category->category_name }}</p>
@@ -63,44 +64,19 @@
                   </ul>
                </aside>
                <aside class="single_sidebar_widget popular_post_widget">
-                  <h3 class="widget_title">Paket Paling laris</h3>
-                  <div class="media post_item">
-                     <img src="assets/landing/img/post/paket umrah gold.png" alt="Paket Umrah Gold">
-                     <div class="media-body">
-                        <a href="single-blog.html">
-                           <h3>Paket Umrah Gold 10 Hari</h3>
-                        </a>
-                        <p>Mulai dari 34 Juta</p>
-                     </div>
-                  </div>
-                  <div class="media post_item">
-                     <img src="assets/landing/img/post/paket umrah gold.png" alt="Paket Umrah Yellow">
-                     <div class="media-body">
-                        <a href="single-blog.html">
-                           <h3>Paket Umrah Yellow 9 Hari</h3>
-                        </a>
-                        <p>Mulai dari 25 juta</p>
-                     </div>
-                  </div>
-                  <div class="media post_item">
-                     <img src="assets/landing/img/post/paket umrah gold.png" alt="post">
-                     <div class="media-body">
-                        <a href="single-blog.html">
-                           <h3>Paket Haji Plus</h3>
-                        </a>
-                        <p>Mulai dari xx juta</p>
-                     </div>
-                  </div>
-                  <div class="media post_item">
-                     <img src="assets/landing/img/post/paket umrah gold.png" alt="post">
-                     <div class="media-body">
-                        <a href="single-blog.html">
-                           <h3>Paket Umrah Plus Turkey</h3>
-                        </a>
-                        <p>Mulai dari xx juta</p>
-                     </div>
-                  </div>
-               </aside>
+                  <h3 class="widget_title">Paket Paling Laris</h3>
+                  @foreach ($favorite_packages as $package)
+                      <div class="media post_item">
+                          <img src="{{ asset($package->media_banner) }}" alt="{{ $package->package_name }}" width="100" height="100">
+                          <div class="media-body">
+                              <a href="{{ route('package.show', $package->id) }}">
+                                  <h3>{{ $package->package_name }}</h3>
+                              </a>
+                              <p>Mulai dari {{ $package->harga_mulai }} Jutaan</p>
+                          </div>
+                      </div>
+                  @endforeach
+              </aside>
                
                <aside class="single_sidebar_widget tag_cloud_widget">
                   <h4 class="widget_title">Informasi Kontak</h4>
@@ -149,6 +125,7 @@
                <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
                         type="download">Download Katalog</button>
             </div>
+           </div>
          </div>
          <!-- end konten samping kanan -->
 @endsection

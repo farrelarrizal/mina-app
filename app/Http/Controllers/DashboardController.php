@@ -19,18 +19,23 @@ class DashboardController extends Controller
 
     public function artikel()
     {
-        $articles = DB::table('articles')->orderBy('created_at', 'desc')->get();
+        $articles = DB::table('articles')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10); // Paginate with 10 items per page
+    
         $data = [
             'title' => 'List Artikel',
             'articles' => $articles,
         ];
+    
         return view('dashboard.artikel.index', $data);
     }
+    
 
     public function paket()
     {
         $packages = DB::table('packages')
-            ->join('package_detail', 'packages.slug', '=', 'package_detail.slug')
+            ->join('package_detail', 'packages.id', '=', 'package_detail.package_id')
             ->join('package_category', 'packages.category_id', '=', 'package_category.id')
             ->orderBy('packages.created_at', 'desc')
             ->get();
@@ -241,9 +246,11 @@ class DashboardController extends Controller
         $fasilitas = $request->fasilitas;
         $fasilitas = strip_tags($fasilitas);
 
+
         try {
 
-            DB::table('packages')->insert([
+            $package_id = DB::table('packages')->insertGetId(
+            [
                 'package_name' => $request->title,
                 'duration' => $request->duration,
                 'category_id' => $request->tipe_paket,
@@ -253,6 +260,7 @@ class DashboardController extends Controller
             ]);
 
             DB::table('package_detail')->insert([
+                'package_id' => $package_id,
                 'slug' => $slug,
                 'package_description' => $request->description,
                 'maskapai' => $request->maskapai,
@@ -274,5 +282,139 @@ class DashboardController extends Controller
         }
 
         return redirect()->route('dashboard.paket.index')->with('success', 'Paket berhasil ditambahkan');
+    }
+
+    public function banner(){
+        $banners = DB::table('banner')->get();
+
+        $data = [
+            'title' => 'Banner',
+            'banners' => $banners,
+
+        ];
+
+        return view('dashboard.banner.index', $data);
+    }
+
+    public function bannerCreate(){
+        
+        $data = [
+            'title' => 'Tambah Banner',
+        ];
+
+        return view('dashboard.banner.create', $data);
+    }
+
+    public function bannerStore(Request $request){
+        $image = $request->file('image');
+        $image_name = time() . '.' . $image->extension();
+        // store to assets/article
+        $image->move(public_path('assets/images/banner'), $image_name);
+
+        DB::table('banner')->insert([
+            'title' => $request->title,
+            'image_path' => 'assets/images/banner/' . $image_name,
+        ]);
+
+        return redirect()->route('dashboard.banner.index')->with('success', 'Banner berhasil ditambahkan');
+    }
+
+    public function paketDelete($id)
+    {
+        DB::table('packages')->where('id', $id)->delete();
+        DB::table('package_detail')->where('package_id', $id)->delete();
+        return redirect()->route('dashboard.paket.index')->with('success', 'Paket berhasil dihapus');
+    }
+
+    public function paketEdit($id)
+    {
+        // Retrieve the package and its details by ID
+        $paket = DB::table('packages')
+                    ->join('package_detail', 'packages.id', '=', 'package_detail.package_id')
+                    ->where('packages.id', $id)
+                    ->select('packages.*', 'package_detail.*')
+                    ->first();
+
+        if (!$paket) {
+            return redirect()->back()->with('error', 'Paket tidak ditemukan.');
+        }
+
+        $data = [
+            'title' => 'Edit Paket Mina Wisata',
+            'paket' => $paket,
+        ];
+
+        // Pass the package data to the edit view
+        return view('dashboard.paket.edit', $data);
+    }
+
+    public function paketUpdate(Request $request, $id)
+    {
+        $slug = preg_replace('/[^a-zA-Z0-9]/', '-', $request->title);
+        $slug = strtolower($slug);
+
+        // Remove dots from price and convert to int
+        $harga_quad = (int) str_replace('.', '', $request->harga_quad);
+        $harga_triple = (int) str_replace('.', '', $request->harga_triple);
+        $harga_double = (int) str_replace('.', '', $request->harga_double);
+        $harga_mulai = (int) str_replace('.', '', $request->harga_mulai);
+
+        $package = DB::table('packages')->where('id', $id)->first();
+        if (!$package) {
+            return redirect()->back()->with('error', 'Paket tidak ditemukan.');
+        }
+
+        if ($request->hasFile('media_brosur')) {
+            $media_brosur = $request->file('media_brosur');
+            $media_brosur_name = time() . '_brosur.' . $media_brosur->extension();
+            $media_brosur->move(public_path('assets/images/paket'), $media_brosur_name);
+        } else {
+            $media_brosur_name = basename($package->media_banner);
+        }
+
+        if ($request->hasFile('media_itenary')) {
+            $media_itinerary = $request->file('media_itenary');
+            $media_itinerary_name = time() . '_itenary.' . $media_itinerary->extension();
+            $media_itinerary->move(public_path('assets/images/paket'), $media_itinerary_name);
+        } else {
+            $media_itinerary_name = basename($package->itenary_media);
+        }
+
+        $perlengkapan = $request->perlengkapan;
+        $dokumen_persyaratan = $request->dokumen_persyaratan;
+        $snk = $request->snk;
+        $fasilitas = $request->fasilitas;
+
+        try {
+            DB::table('packages')->where('id', $id)->update([
+                'package_name' => $request->title,
+                'duration' => $request->duration,
+                'category_id' => $request->tipe_paket,
+                'slug' => $slug,
+                'media_banner' => 'assets/images/paket/' . $media_brosur_name,
+                'harga_mulai' => $harga_mulai,
+            ]);
+
+            DB::table('package_detail')->where('package_id', $id)->update([
+                'slug' => $slug,
+                'package_description' => $request->description,
+                'maskapai' => $request->maskapai,
+                'hotel_madinah' => $request->hotel_madinah,
+                'hotel_makkah' => $request->hotel_makkah,
+                'harga_quad' => $harga_quad,
+                'harga_triple' => $harga_triple,
+                'harga_double' => $harga_double,
+                'perlengkapan' => $perlengkapan,
+                'dokumen_persyaratan' => $dokumen_persyaratan,
+                'syarat_ketentuan' => $snk,
+                'fasilitas' => $fasilitas,
+                'itenary_media' => 'assets/images/paket/' . $media_itinerary_name,
+                'harga_mulai' => $harga_mulai,
+            ]);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan, silahkan coba lagi. ERROR: ' . $e->getMessage());
+        }
+
+        return redirect()->route('dashboard.paket.index')->with('success', 'Paket berhasil diperbarui');
     }
 }
