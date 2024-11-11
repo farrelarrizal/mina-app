@@ -47,22 +47,25 @@
             </div>
             <div class="row">
                 @foreach($packages as $package)
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-do text-center mb-30">
-                        <div class="do-icon">
-                            <img class="card-img-top" src="{{ asset($package->media_banner) }}" alt="Paket Mina">
-                        </div>
-                        <div class="do-caption
-                        ">
-                            <br>
-                            <h4>{{ $package->package_name }}</h4>
-                            <p><i class="fas fa-calendar-alt"></i> {{ $package->duration }} Hari</p>
-                        </div>
-                        <div class="do-btn">
-                            <a href="{{ route('package.show', $package->slug) }}"><i class="ti-arrow-right"></i> Selengkapnya</a>
-                        </div>
+                    <div class="col-lg-4 col-md-6">
+                        <a href="{{ route('package.show', $package->slug) }}" class="text-decoration-none card-link">
+                            <div class="single-do text-center mb-30">
+                                <div class="do-icon">
+                                    <img class="card-img-top" src="{{ asset($package->media_banner) }}" alt="Paket Mina">
+                                </div>
+                                <div class="do-caption">
+                                    <br>
+                                    <h4>{{ $package->package_name }}</h4>
+                                    <p><i class="fas fa-calendar-alt"></i> {{ $package->duration }} Hari</p>
+                                </div>
+                                <div class="do-btn p-4">
+                                    <a href="{{ route('package.show', $package->slug) }}" class="text-decoration-none" style="background-color: transparent; color: inherit;">
+                                        <i class="ti-arrow-right" style="background-color: transparent;"></i> Selengkapnya
+                                    </a>
+                                </div> 
+                            </div>
+                        </a>
                     </div>
-                </div>
                 @endforeach
             </div>
         </div>

@@ -43,7 +43,7 @@
                                                     <!-- Use Bootstrap's stretched-link class to make the whole card clickable -->
                                                     {{-- <span class="text-center stretched-link"> Selengkapnya</span> --}}
                                                     <!-- icon selengkapnya -->
-                                                    <div class="do-btn">
+                                                    <div class="do-btn p-4">
                                                         <a href="{{ route('package.show', $package->slug) }}" class="text-decoration-none" style="background-color: transparent; color: inherit;">
                                                             <i class="ti-arrow-right" style="background-color: transparent;"></i> Selengkapnya
                                                         </a>
