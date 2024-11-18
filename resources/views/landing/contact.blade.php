@@ -77,7 +77,7 @@
                                         <h4>Office Mina Wisata 1</h4>
                                         <p>Mina Wisata Kantor Pusat Jl Raya RA Kartini No. 123 E Surabaya 60246 </p>
                                         <p>Telp : 031-562 5566/5280</p>
-                                        <a href="https://www.google.com/maps/place/MINA+WISATA+ISLAMI/@-7.2787163,112.7330476,15z/data=!4m6!3m5!1s0x2dd7fbef4aea57bf:0x8e98ced0a3c9307e!8m2!3d-7.2787163!4d112.7330476!16s%2Fg%2F11dd_n30h_?entry=ttu" class="btn"> 
+                                        <a href="https://maps.app.goo.gl/7Z2DipkqsDtHR7PX9" class="btn"> 
                                         <i class="ti-map"></i> Lokasi</a>
                                     </div>
                                 </div>
