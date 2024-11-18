@@ -79,7 +79,7 @@
                         </div>
                         <div class="col-xl-2 col-lg-2 col-md-3">
                             <div class="header-right-btn f-right d-none d-lg-block">
-                                <a href="#" class="btn header-btn">Hubungi Kami</a>
+                                <a href="https://wa.me/6281333550157?Assalamualaikum%20Mina%20Wisata%2C%20saya%20ingin%20bertanya%20terkait%20dengan%20perjalanan%20Umrah%2FHaji.%20Mohon%20informasinya.%20%0A%0ATerima%20kasih." class="btn header-btn">Hubungi Kami</a>
                             </div>
                         </div>
                         <!-- Mobile Menu -->
@@ -121,9 +121,8 @@
                                         </div>
                                     </div>
                                     <div class="footer-social">
-                                        <a href="#"><i class="fab fa-instagram"></i></a>
-                                        <a href="#"><i class="fab fa-youtube"></i></a>
-                                        <a href="#"><i class="fas fa-globe"></i></a>
+                                        <a href="https://www.instagram.com/hajiumrohminawisata?igsh=aGJ6em12ZTk4bGFv"><i class="fab fa-instagram"></i></a>
+                                        <a href="https://youtube.com/@minawisataislami7685?si=M6ORsOHdZz21wnqq"><i class="fab fa-youtube"></i></a>
                                     </div>
                                 </div>
                             </div>
