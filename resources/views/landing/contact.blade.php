@@ -98,7 +98,7 @@
                                         <h4>Office Mina Wisata 2</h4>
                                         <p>Ketintang Ruko Lotus Regency Blok D-8 Jl. Ketintang Baru Selatan I No. 52 Surabaya 60231 </p>
                                         <p>Telp : 031-82707.81/82</p>
-                                        <a href="https://www.google.com/maps/place/MINA+WISATA+ISLAMI/@-7.2787163,112.7330476,15z/data=!4m6!3m5!1s0x2dd7fbef4aea57bf:0x8e98ced0a3c9307e!8m2!3d-7.2787163!4d112.7330476!16s%2Fg%2F11dd_n30h_?entry=ttu" class="btn"> 
+                                        <a href="https://maps.app.goo.gl/7Z2DipkqsDtHR7PX9" class="btn"> 
                                         <i class="ti-map"></i> Lokasi</a>
                                     </div>
                                 </div>
@@ -119,7 +119,7 @@
                                         <h4>Office Mina Wisata 3</h4>
                                         <p>Office Surabaya 3 Mina Wisata Cab. Royal Plaza Royal Plaza Lt. UG F3/11 Surabaya 60231 </p>
                                         <p>Telp : 031-562 5566/5280</p>
-                                        <a href="https://www.google.com/maps/place/MINA+WISATA+ISLAMI/@-7.2787163,112.7330476,15z/data=!4m6!3m5!1s0x2dd7fbef4aea57bf:0x8e98ced0a3c9307e!8m2!3d-7.2787163!4d112.7330476!16s%2Fg%2F11dd_n30h_?entry=ttu" class="btn"> 
+                                        <a href="https://maps.app.goo.gl/5BYg4pXKP4mRaeBL8" class="btn"> 
                                         <i class="ti-map"></i> Lokasi</a>
                                     </div>
                                 </div>
@@ -177,7 +177,7 @@
 <!-- ================ contact section end ================= -->
 
  <!-- have-project Start-->
-<div class="have-project">
+ <div class="have-project">
     <div class="container">
         <div class="haveAproject" data-background="assets/landing/img/team/have.jpg">
             <div class="row d-flex align-items-center">
@@ -189,13 +189,17 @@
                 </div>
                 <div class="col-xl-5 col-lg-3 col-md-12">
                     <div class="wantToWork-btn f-right">
-                        <a href="#" class="btn btn-ans ">Hubungi kami <i class="fab fa-whatsapp"></i> </a>
+                        <a href="https://api.whatsapp.com/send/?phone=6281333550157&text=Assalamualaikum%20Mina%20Wisata%2C%20saya%20ingin%20bertanya%20terkait%20dengan%20perjalanan%20Umrah%2FHaji.%20Mohon%20informasinya.%20Terima%20kasih.&type=phone_number&app_absent=0" 
+                           class="btn btn-ans" 
+                           target="_blank">
+                            Hubungi kami <i class="fab fa-whatsapp"></i>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
+
 <!-- have-project End -->
 @endsection

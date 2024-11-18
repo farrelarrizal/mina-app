@@ -65,18 +65,22 @@
                 <div class="col-xl-7 col-lg-9 col-md-12">
                     <div class="wantToWork-caption">
                         <h2>Ingin Informasi Lebih?</h2>
-                        <p>Hubungi kami agar kami dapat membantu anda memberikan informasi sesuai dengan apa
-                            yang anda butuhkan.</p>
+                        <p>Raih informasi yang Anda butuhkan seputar perjalanan ke Baitullah dan wujudkan impian suci Anda bersama Mina Wisata. <br>Hubungi kami sekarang!</p>
                     </div>
                 </div>
                 <div class="col-xl-5 col-lg-3 col-md-12">
                     <div class="wantToWork-btn f-right">
-                        <a href="#" class="btn btn-ans">Hubungi kami</a>
+                        <a href="https://api.whatsapp.com/send/?phone=6281333550157&text=Assalamualaikum%20Mina%20Wisata%2C%20saya%20ingin%20bertanya%20terkait%20dengan%20perjalanan%20Umrah%2FHaji.%20Mohon%20informasinya.%20Terima%20kasih.&type=phone_number&app_absent=0" 
+                           class="btn btn-ans" 
+                           target="_blank">
+                            Hubungi kami <i class="fab fa-whatsapp"></i>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 <!-- Have Project End -->
 @endsection
