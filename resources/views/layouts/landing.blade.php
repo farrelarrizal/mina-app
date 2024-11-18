@@ -79,7 +79,7 @@
                         </div>
                         <div class="col-xl-2 col-lg-2 col-md-3">
                             <div class="header-right-btn f-right d-none d-lg-block">
-                                <a href="https://wa.me/6281333550157?Assalamualaikum%20Mina%20Wisata%2C%20saya%20ingin%20bertanya%20terkait%20dengan%20perjalanan%20Umrah%2FHaji.%20Mohon%20informasinya.%20%0A%0ATerima%20kasih." class="btn header-btn">Hubungi Kami</a>
+                                <a href="https://api.whatsapp.com/send/?phone=6281333550157&text=Assalamualaikum%20Mina%20Wisata%2C%20saya%20ingin%20bertanya%20terkait%20dengan%20perjalanan%20Umrah%2FHaji.%20Mohon%20informasinya.%20Terima%20kasih.&type=phone_number&app_absent=0" class="btn header-btn">Hubungi Kami</a>
                             </div>
                         </div>
                         <!-- Mobile Menu -->
