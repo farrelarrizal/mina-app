@@ -11,6 +11,8 @@
                 </div>
                 <div class="blog_details">
                    <h1>{{ $package->package_name }}</h1>
+                   <br>
+                   <img src="{{ asset($package->media_banner) }}" class="rounded mx-auto d-block" alt="Rundown umrah mina" width="80%">
                    <p class="excert">{{ $package->package_description }}</p>
                    
                    <table class="table table-striped">
@@ -33,15 +35,15 @@
                          </tr>
                          <tr>
                             <th scope="row">Quad</th>
-                            <td>Rp {{ number_format($package->harga_quad, 0, ',', '.') }}</td>
+                            <td>{{$package->harga_quad}}</td>
                          </tr>
                          <tr>
                             <th scope="row">Triple</th>
-                            <td>Rp {{ number_format($package->harga_triple, 0, ',', '.') }}</td>
+                            <td>{{$package->harga_triple}}</td>
                          </tr>
                          <tr>
                             <th scope="row">Double</th>
-                            <td>Rp {{ number_format($package->harga_double, 0, ',', '.') }}</td>
+                            <td>{{ $package->harga_double }}</td>
                          </tr>
                       </tbody>
                    </table>
@@ -110,8 +112,8 @@
                    </div>
 
                    <br>
-                   <h2>Itenary</h2>
-                   <img src="{{ asset($package->itenary_media) }}" class="rounded mx-auto d-block" alt="Rundown umrah mina">
+                   <h2>Rundown</h2>
+                   <img src="{{ asset($package->itenary_media) }}" class="rounded mx-auto d-block" alt="Rundown umrah mina" width="80%">
                 </div>
              </div>
 

@@ -183,10 +183,10 @@
         });
     }
 
-    // Format price input on keyup
-    $('.price').on('keyup', function () {
-        this.value = this.value.replace(/\D/g, '').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
-    });
+    // // Format price input on keyup
+    // $('.price').on('keyup', function () {
+    //     this.value = this.value.replace(/\D/g, '').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+    // });
 
 </script>
 

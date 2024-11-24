@@ -210,19 +210,22 @@ class DashboardController extends Controller
         // dd($slug);
         
         // remove . from price and convert to int
-        $harga_quad =  (int) str_replace('.', '', $request->harga_quad);
-        $harga_triple =  (int) str_replace('.', '', $request->harga_triple);
-        $harga_double =  (int) str_replace('.', '', $request->harga_double);
-        $harga_mulai =  (int) str_replace('.', '', $request->harga_mulai);
+        $harga_quad =  $request->harga_quad;
+        $harga_triple =  $request->harga_triple;
+        $harga_double =  $request->harga_double;
+        $harga_mulai =  $request->harga_mulai;
+
 
         // save image
         $media_brosur = $request->file('media_brosur');
-        $media_brosur_name = time() . '.' . $media_brosur->extension();
+        // $media_brosur_name = time() . '.' . $media_brosur->extension();
+        $media_brosur_name = time() . '_brosur.' . $media_brosur->extension();
         // store to assets/article
         $media_brosur->move(public_path('assets/images/paket'), $media_brosur_name);
 
         $media_itinerary = $request->file('media_itenary');
-        $media_itinerary_name = time() . '.' . $media_itinerary->extension();
+        // $media_itinerary_name = time() . '.' . $media_itinerary->extension();
+        $media_itinerary_name = time() . '_itenary.' . $media_itinerary->extension();
         // store to assets/article
         $media_itinerary->move(public_path('assets/images/paket'), $media_itinerary_name);
 
@@ -328,6 +331,7 @@ class DashboardController extends Controller
     public function paketEdit($id)
     {
         // Retrieve the package and its details by ID
+        $tipe_paket = DB::table('package_category')->get();
         $paket = DB::table('packages')
                     ->join('package_detail', 'packages.id', '=', 'package_detail.package_id')
                     ->where('packages.id', $id)
@@ -341,6 +345,7 @@ class DashboardController extends Controller
         $data = [
             'title' => 'Edit Paket Mina Wisata',
             'paket' => $paket,
+            'tipe_paket' => $tipe_paket,
         ];
 
         // Pass the package data to the edit view
@@ -348,15 +353,16 @@ class DashboardController extends Controller
     }
 
     public function paketUpdate(Request $request, $id)
-    {
+    {  
+
         $slug = preg_replace('/[^a-zA-Z0-9]/', '-', $request->title);
         $slug = strtolower($slug);
 
         // Remove dots from price and convert to int
-        $harga_quad = (int) str_replace('.', '', $request->harga_quad);
-        $harga_triple = (int) str_replace('.', '', $request->harga_triple);
-        $harga_double = (int) str_replace('.', '', $request->harga_double);
-        $harga_mulai = (int) str_replace('.', '', $request->harga_mulai);
+        $harga_quad = $request->harga_quad;
+        $harga_triple = $request->harga_triple;
+        $harga_double = $request->harga_double;
+        $harga_mulai = $request->harga_mulai;
 
         $package = DB::table('packages')->where('id', $id)->first();
         if (!$package) {

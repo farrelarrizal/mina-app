@@ -38,7 +38,7 @@
             <table id="dom-jqry" class="table table-striped table-bordered nowrap">
             <thead>
                 <tr>
-                <th>ID</th>
+                <th>No</th>
                 <th>Image</th>
                 <th>Nama Paket</th>
                 <th>Tipe Paket</th>
@@ -49,7 +49,7 @@
             <tbody>
                 @foreach($packages as $package)
                 <tr>
-                    <td>{{ $package->id }}</td>
+                    <td>{{ $loop->iteration }}</td>
                     <td>
                         <img src="{{ asset($package->media_banner) }}" alt="{{ $package->package_name }}" width="100">
                     </td>
