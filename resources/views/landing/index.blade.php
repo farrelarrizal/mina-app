@@ -159,7 +159,7 @@
                             Kemenag RI dengan Jaminan 5 Pasti Umrah</p>
                         <p>Sudah berpengalaman melayani Tamu Allah menuju Baitullah selama hampir 1 dekade dengan
                             ribuan Alumni Jamaah yang tersebar di seluruh Nusantara</p>
-                        <a href="#" class="btn">Lihat Katalog</a>
+                        <a href="https://simpu.kemenag.go.id/home/detail/693" class="btn">Cek SISKOPATUH</a>
                     </div>
                 </div>
             </div>
